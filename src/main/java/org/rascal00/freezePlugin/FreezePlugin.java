@@ -96,7 +96,7 @@ public final class FreezePlugin extends JavaPlugin {
         frozenPlayers.put(playerUUID, true);
         player.sendMessage("You have been frozen for " + freezeDuration + " seconds!");
 
-        // Freeze the player
+        // Freeze the player and add effects
         new BukkitRunnable() {
             int timeLeft = freezeDuration;
 
@@ -109,9 +109,30 @@ public final class FreezePlugin extends JavaPlugin {
                     return;
                 }
 
+                // Keep the player at the same location
                 player.teleport(freezeLocation);
+
+                // Add particle effects
+                player.getWorld().spawnParticle(
+                        org.bukkit.Particle.SNOWFLAKE, // Particle type
+                        freezeLocation.getX(),
+                        freezeLocation.getY() + 1, // Slightly above the player's head
+                        freezeLocation.getZ(),
+                        10, // Number of particles
+                        0.5, 0.5, 0.5, // Spread in X, Y, Z
+                        0.1 // Speed of particles
+                );
+
+                // Play sound effect
+                player.getWorld().playSound(
+                        freezeLocation,
+                        org.bukkit.Sound.BLOCK_GLASS_BREAK, // Sound type
+                        1.0f, // Volume
+                        1.0f // Pitch
+                );
+
                 timeLeft--;
             }
-        }.runTaskTimer(this, 0L, 20L);
+        }.runTaskTimer(this, 0L, 20L); // Schedule every second
     }
 }
