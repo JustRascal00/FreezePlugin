@@ -1,0 +1,11 @@
+name: FreezePlugin
+version: 1.0
+main: org.rascal00.freezePlugin.FreezePlugin
+api-version: "1.20"
+commands:
+  start:
+    description: Starts the FreezePlugin.
+    usage: /start
+  freeze:
+    description: Freezes another player.
+    usage: /freeze <player>

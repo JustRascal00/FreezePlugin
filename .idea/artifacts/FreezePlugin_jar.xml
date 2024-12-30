@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="FreezePlugin:jar">
+    <output-path>$PROJECT_DIR$/../plugin server/plugins</output-path>
+    <root id="archive" name="FreezePlugin.jar">
+      <element id="module-output" name="FreezePlugin" />
+    </root>
+  </artifact>
+</component>
